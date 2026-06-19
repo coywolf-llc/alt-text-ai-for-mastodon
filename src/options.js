@@ -14,6 +14,13 @@ const DEFAULT_PRICING = {
 };
 const DEFAULT_PRICING_AS_OF = '2026-06-19';
 
+// Per-image estimate inputs — mirror the content script so this figure matches
+// what you'll see in the composer. A typical posted photo is capped by
+// Anthropic's image resize at ~1.15 MP ≈ 1550 image tokens.
+const EST_IMAGE_TOKENS = 1550;
+const EST_PROMPT_TOKENS = 120;
+const EST_OUTPUT_TOKENS = 70;
+
 const $ = (id) => document.getElementById(id);
 
 function setStatus(el, message, kind) {
@@ -24,6 +31,22 @@ function setStatus(el, message, kind) {
 
 function formatUsd(n) {
   return '$' + Number(n || 0).toFixed(5);
+}
+
+function formatPerImage(n) {
+  return '~$' + Number(n || 0).toFixed(4);
+}
+
+function perImageCost(input, output) {
+  return ((EST_IMAGE_TOKENS + EST_PROMPT_TOKENS) / 1e6) * input + (EST_OUTPUT_TOKENS / 1e6) * output;
+}
+
+// Recompute the "≈ Cost / image" column from whatever is currently in the rate
+// fields (live as the user types, before saving).
+function updatePerImageEstimates() {
+  const num = (id) => parseFloat($(id).value) || 0;
+  $('haikuPerImage').textContent = formatPerImage(perImageCost(num('haikuInput'), num('haikuOutput')));
+  $('sonnetPerImage').textContent = formatPerImage(perImageCost(num('sonnetInput'), num('sonnetOutput')));
 }
 
 function selectedModel() {
@@ -67,6 +90,7 @@ function renderPricing(pricing, asOf) {
   $('sonnetInput').value = s.input;
   $('sonnetOutput').value = s.output;
   $('pricingAsOf').textContent = asOf || DEFAULT_PRICING_AS_OF;
+  updatePerImageEstimates();
 }
 
 function renderSession(cost, count) {
@@ -294,6 +318,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   $('savePricing').addEventListener('click', savePricing);
   $('resetPricing').addEventListener('click', resetPricing);
+  ['haikuInput', 'haikuOutput', 'sonnetInput', 'sonnetOutput'].forEach((id) =>
+    $(id).addEventListener('input', updatePerImageEstimates)
+  );
   $('resetSession').addEventListener('click', resetSession);
 
   $('addInstance').addEventListener('click', addInstance);

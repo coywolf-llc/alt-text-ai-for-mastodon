@@ -251,6 +251,12 @@
   font-size: 12px;
 }
 
+.atc-perimage {
+  font-weight: 600;
+  color: #4f46e5;
+  white-space: nowrap;
+}
+
 .atc-bignum {
   margin: 4px 0 8px;
   font-size: 24px;

@@ -19,6 +19,9 @@
   // Rough fixed cost inputs for the pre-call estimate (see README §cost).
   const PROMPT_TOKENS = 120; // ALT_PROMPT + message overhead
   const EST_OUTPUT_TOKENS = 70; // ~one short sentence
+  // Anthropic resizes large images (~1.15 MP / 1568px long edge) before billing,
+  // so cap the token estimate to match what you'll actually be charged.
+  const MAX_IMAGE_TOKENS = 1600;
 
   // ---- Settings cache -------------------------------------------------------
 
@@ -81,7 +84,8 @@
   function preCallEstimate(imgEl, model) {
     const w = imgEl.naturalWidth || imgEl.width || 0;
     const h = imgEl.naturalHeight || imgEl.height || 0;
-    const imageTokens = w && h ? Math.round((w * h) / 750) : 0;
+    const rawTokens = w && h ? Math.round((w * h) / 750) : MAX_IMAGE_TOKENS;
+    const imageTokens = Math.min(rawTokens, MAX_IMAGE_TOKENS);
     const p = pricingFor(model);
     const cost =
       ((imageTokens + PROMPT_TOKENS) / 1e6) * p.input + (EST_OUTPUT_TOKENS / 1e6) * p.output;
