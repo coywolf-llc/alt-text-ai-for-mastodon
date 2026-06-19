@@ -99,8 +99,10 @@ function renderInstances(instances) {
     li.appendChild(name);
 
     const remove = document.createElement('button');
+    remove.type = 'button';
     remove.className = 'atc-btn atc-btn--quiet atc-btn--small';
     remove.textContent = 'Remove';
+    remove.setAttribute('aria-label', `Remove ${domain}`);
     remove.addEventListener('click', () => removeInstance(domain));
     li.appendChild(remove);
 

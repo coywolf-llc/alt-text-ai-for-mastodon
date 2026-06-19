@@ -16,16 +16,27 @@ const DEFAULT_MODEL = 'claude-haiku-4-5-20251001';
 const ALT_TEXT_MAX_TOKENS = 300;
 
 // Instruction for the model. Returns only the description text.
-const ALT_PROMPT = [
-  'You write alternative text (alt text) for an image, to be read aloud by screen readers.',
-  'Look at the image and write a description following these rules:',
-  '- Return ONLY the description text — no preamble, quotes, labels, or explanation.',
-  '- Write one concise sentence, ideally under 125 characters.',
-  '- Describe the content and function of the image, not decorative detail.',
-  '- If the image contains text, transcribe it verbatim.',
-  "- Do not begin with \"image of\", \"photo of\", \"a picture of\", or similar lead-ins.",
-  '- Never invent details that are not visible in the image.',
-].join('\n');
+// Accessibility principles synthesized from Mark Wyner's "Alt Text is the Ocean
+// You Thought Was a Pond" and W3C WAI image guidance — limited to the parts that
+// apply to a single alt-text field.
+const ALT_PROMPT = `You write alternative text (alt text) for one image a person is attaching to a Mastodon post. It will be read aloud by screen readers, rendered character-by-character on refreshable braille displays, and shown if the image fails to load. Write for those readers — never for search engines or keywords.
+
+Return ONLY the description text: no preamble, no surrounding quotation marks, no labels, and no commentary.
+
+First decide what kind of image this is, then describe it accordingly:
+- Functional (a screenshot of a button or control, an icon that does something): describe its function or destination, not its appearance.
+- Text-bearing (a sign, screenshot, quote card, meme, poster): transcribe the visible text verbatim, using curly quotation marks and apostrophes (" " ' '). If the visual design is itself the point, also describe the design — colors, materials, layout, typeface.
+- Complex (chart, graph, infographic, diagram, data-dense screenshot): lead with the single main takeaway, then give the key figures or structure that support it.
+- Informative (most photos): describe what matters in this context.
+
+How to write it:
+- Front-load the most important thing. The first clause must carry the essential meaning on its own; add secondary details after it, in descending order of importance.
+- Use complete sentences, sentence case, and terminal punctuation. Screen readers use punctuation for pacing and braille users read it literally.
+- Match depth to the image: one tight sentence for a simple photo; more detail when the image is rich or is itself the subject. Keep it well under 1500 characters.
+- Expand anything normally abbreviated, because braille renders it literally and speech mispronounces it. Write units, measurements, and addresses in full — for example "5 gigabytes" not "5GB", "100 pounds" not "100lbs", "Street" not "St." Spell out acronyms unless the audience knows the acronym better than the words.
+- Do not begin with "image of", "photo of", "picture of", or "graphic of" — assistive technology already announces it as an image. You MAY name the medium when it matters, e.g. "Watercolor painting of…" or "Screenshot of…".
+- Use proper typographic characters (curly quotes and apostrophes) when quoting text shown in the image.
+- Describe only what is visible. Never guess at names, places, wording, or details you cannot see, and don't describe purely decorative flourishes that carry no information.`;
 
 // ---- Anthropic API calls ----------------------------------------------------
 

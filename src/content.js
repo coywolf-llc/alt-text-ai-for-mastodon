@@ -163,6 +163,8 @@
 
   // ---- Button + UI ----------------------------------------------------------
 
+  const BTN_LABEL = 'Generate with Claude';
+
   function buildButton(widget) {
     const wrap = document.createElement('div');
     wrap.className = 'atc-wrap';
@@ -170,10 +172,20 @@
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'atc-button';
-    button.textContent = '✨ Generate with Claude';
+    // Emoji is decorative — keep it out of the accessible name.
+    const icon = document.createElement('span');
+    icon.setAttribute('aria-hidden', 'true');
+    icon.textContent = '✨';
+    const label = document.createElement('span');
+    label.className = 'atc-label';
+    label.textContent = BTN_LABEL;
+    button.append(icon, document.createTextNode(' '), label);
 
     const status = document.createElement('span');
     status.className = 'atc-status';
+    // Announce results/errors to screen-reader users.
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
 
     wrap.appendChild(button);
     wrap.appendChild(status);
@@ -188,8 +200,8 @@
     button.addEventListener('click', async () => {
       const model = settings.model;
       button.disabled = true;
-      const original = button.textContent;
-      button.textContent = 'Generating…';
+      button.setAttribute('aria-busy', 'true');
+      label.textContent = 'Generating…';
       status.textContent = '';
       status.classList.remove('atc-status--error');
 
@@ -223,7 +235,8 @@
         status.classList.add('atc-status--error');
       } finally {
         button.disabled = false;
-        button.textContent = original;
+        button.removeAttribute('aria-busy');
+        label.textContent = BTN_LABEL;
       }
     });
 

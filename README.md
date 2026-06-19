@@ -44,11 +44,16 @@ only to `api.anthropic.com`.
 
 ## Configure a Mastodon instance
 
-On the options page, under **Mastodon instances**, type your instance domain
-(e.g. `mastodon.social`) and click **Add instance**. Chrome will ask for
-permission to run on that site. After granting it, reload the Mastodon tab — the
-**Generate with Claude** button will appear when you open an image's description
-field. Add as many instances as you use; remove one to revoke its access.
+Mastodon runs on any domain, and so does this extension — it works on **any
+instance**, including self-hosted ones. On the options page, under **Mastodon
+instances**, type your instance domain (e.g. `mastodon.social`, `henshaw.social`,
+`coywolf.social`) and click **Add instance**. Chrome will ask for permission to
+run on that site. After granting it, reload the Mastodon tab — the **Generate
+with Claude** button will appear when you open an image's description field. Add
+as many instances as you use; remove one to revoke its access.
+
+Host access is requested per-instance (not "all sites") so the extension only
+runs where you've explicitly approved it — the privacy-first default.
 
 ## Validating your key
 
