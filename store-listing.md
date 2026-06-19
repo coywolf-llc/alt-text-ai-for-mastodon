@@ -6,7 +6,7 @@ AI Alt Text for Mastodon
 
 ## Summary (≤ 132 chars)
 
-Generate image alt text in the Mastodon composer with your own Claude API key. Privacy-first, bring-your-own-key.
+Generate accessible, best-practice image alt text in the Mastodon composer with your own Claude API key. Privacy-first.
 
 ## Category
 
@@ -38,10 +38,13 @@ COST TRANSPARENCY
   afterward, with a running session total. Pricing is editable so you can keep
   it current with Anthropic's rates.
 
-GOOD ALT TEXT BY DEFAULT
-• Claude is prompted to write one concise sentence, describe content and
-  function, transcribe visible text, skip "image of…" lead-ins, and never
-  invent details.
+ACCESSIBILITY BEST PRACTICES BUILT IN
+• Claude is prompted with established alt-text principles — from W3C WAI image
+  guidance and Mark Wyner's accessibility work — so descriptions are written for
+  screen-reader and braille-display users, not for search engines. It classifies
+  the image, front-loads the key information, transcribes any visible text
+  verbatim, expands abbreviations, skips "image of…" lead-ins, and never invents
+  details. You review and edit before posting.
 
 CHOOSE YOUR MODEL
 • Claude Haiku 4.5 (default — fast and inexpensive) or Claude Sonnet 4.6
