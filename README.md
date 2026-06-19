@@ -1,14 +1,11 @@
 # AI Alt Text for the Fediverse
 
 A privacy-first Chrome extension (Manifest V3) that adds an **AI alt-text button**
-to the **Mastodon and Bluesky** web composers. When you open the image
-description (alt-text) field, the extension can send the image to Anthropic's
-Claude API — **using your own API key** — and autofill a concise,
+to the **Mastodon** web composer (any instance, including self-hosted). When you
+open the image description (alt-text) modal, the extension can send the image to
+Anthropic's Claude API — **using your own API key** — and autofill a concise,
 screen-reader-friendly description that follows established alt-text accessibility
 best practices.
-
-Supported networks: **Mastodon** (any instance, including self-hosted) and
-**Bluesky** (`bsky.app`).
 
 - **Accessibility best practices built in.** Claude is prompted with established
   alt-text best practices (aligned with W3C WAI image guidance), so the output is
@@ -18,21 +15,21 @@ Supported networks: **Mastodon** (any instance, including self-hosted) and
   developer key anywhere in the code.
 - **Nothing leaves your device except the image you choose to describe**, which
   goes only to `api.anthropic.com`. No analytics, no telemetry, no "phone home."
-- **Minimal permissions.** Host access is requested per-site, only for the
-  networks you enable.
+- **Minimal permissions.** Host access is requested per-instance, only for the
+  Mastodon sites you add.
 
 ## How it works
 
-1. A **content script** runs only on the sites you approve (Mastodon instances
-   and Bluesky). It watches for the image description (alt-text) field — detected
-   by structure (`role`/`aria-modal` + a textarea + an image preview), not any
-   one platform's markup — injects a **"Generate with Claude"** button, reads the
-   preview image, and autofills the description with Claude's reply.
+1. A **content script** runs only on the Mastodon instances you approve. It
+   watches for the image description (alt-text) modal — detected by structure
+   (`role="dialog"` + a textarea + an image preview), not hashed class names —
+   injects a **"Generate with Claude"** button, reads the preview image, and
+   autofills the description with Claude's reply.
 2. A **background service worker** makes the actual API calls (keeping your key
    out of the page and avoiding the page's CSP/CORS). It is the only place that
    reads the key and the only thing that contacts `api.anthropic.com`.
 3. An **options page** holds your API key, model choice, an editable pricing
-   table, a session cost readout, and the sites where it runs.
+   table, a session cost readout, and your list of Mastodon instances.
 
 ## Accessibility-first descriptions
 
@@ -79,20 +76,18 @@ field, you stay in control.
 Your key is stored only in `chrome.storage.local` on your device and is sent
 only to `api.anthropic.com`.
 
-## Enable the sites you use
+## Configure a Mastodon instance
 
-On the options page, under **Where it runs**, enable the networks you post to.
-Chrome asks for permission per-site; after granting it, **reload that tab once**
-and the **Generate with Claude** button appears when you open an image's
-description field.
+Mastodon runs on any domain, and so does this extension — it works on **any
+instance**, including self-hosted ones. On the options page, under **Mastodon
+instances**, type your instance domain (e.g. `mastodon.social`, `henshaw.social`,
+`coywolf.social`) and click **Add instance**. Chrome will ask for permission to
+run on that site. After granting it, **reload that tab once** — the **Generate
+with Claude** button appears when you open an image's description field. Add as
+many instances as you use; remove one to revoke its access.
 
-- **Bluesky** — click **Enable** next to Bluesky (`bsky.app`).
-- **Mastodon** — Mastodon runs on any domain, so type your instance domain
-  (e.g. `mastodon.social`, `henshaw.social`, `coywolf.social`) and click
-  **Add instance**. Add as many instances as you use; remove one to revoke it.
-
-Host access is requested per-site (not "all sites") so the extension only runs
-where you've explicitly approved it — the privacy-first default.
+Host access is requested per-instance (not "all sites") so the extension only
+runs where you've explicitly approved it — the privacy-first default.
 
 ## Validating your key
 
@@ -146,7 +141,7 @@ This reads the version from `manifest.json` and produces
 ```
 manifest.json          MV3 manifest
 src/background.js       service worker — API calls, key validation, registration
-src/content.js         injected into approved sites — button + autofill
+src/content.js         injected into Mastodon — button + autofill
 src/options.html/.js    settings UI
 src/styles.css          shared styles (injected button + options page)
 icons/                  16 / 48 / 128 px icons

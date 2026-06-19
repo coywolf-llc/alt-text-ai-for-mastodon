@@ -78,7 +78,7 @@ async function init() {
   renderPricing(data.pricing, data.pricingAsOf);
   renderSession(data.sessionCost, data.sessionCount);
   renderLastValidated(data.lastValidated);
-  renderSites(Array.isArray(data.instances) ? data.instances : []);
+  renderInstances(Array.isArray(data.instances) ? data.instances : []);
 }
 
 function renderPricing(pricing, asOf) {
@@ -104,25 +104,17 @@ function renderLastValidated(ts) {
   setStatus($('keyStatus'), `Last validated: ${d.toLocaleString()}`, 'ok');
 }
 
-function renderSites(instances) {
-  renderInstances(instances);
-  renderBuiltins(instances);
-}
-
-// The free-form list shows only user-added Mastodon instances — built-in
-// networks (Bluesky) have their own toggle.
 function renderInstances(instances) {
-  const custom = (instances || []).filter((d) => !BUILTIN_DOMAINS.includes(d));
   const list = $('instanceList');
   list.textContent = '';
-  if (!custom.length) {
+  if (!instances.length) {
     const li = document.createElement('li');
     li.className = 'atc-list__empty';
     li.textContent = 'No instances added yet.';
     list.appendChild(li);
     return;
   }
-  for (const domain of custom) {
+  for (const domain of instances) {
     const li = document.createElement('li');
     li.className = 'atc-list__item';
 
@@ -140,16 +132,6 @@ function renderInstances(instances) {
 
     list.appendChild(li);
   }
-}
-
-function renderBuiltins(instances) {
-  const enabled = (instances || []).includes('bsky.app');
-  const btn = $('toggleBluesky');
-  if (!btn) return;
-  btn.textContent = enabled ? 'Disable' : 'Enable';
-  btn.classList.toggle('atc-btn--primary', !enabled);
-  btn.classList.toggle('atc-btn--quiet', enabled);
-  btn.setAttribute('aria-label', `${enabled ? 'Disable' : 'Enable'} Bluesky (bsky.app)`);
 }
 
 // ---- API key ----------------------------------------------------------------
@@ -257,20 +239,7 @@ async function resetSession() {
   renderSession(0, 0);
 }
 
-// ---- Sites (built-in networks + Mastodon instances) -------------------------
-
-// Known single-domain networks that get a one-click toggle instead of the
-// free-form instance adder.
-const BUILTIN_DOMAINS = ['bsky.app'];
-
-async function getInstances() {
-  const { instances } = await chrome.storage.local.get('instances');
-  return Array.isArray(instances) ? instances : [];
-}
-
-async function refreshSites() {
-  renderSites(await getInstances());
-}
+// ---- Instances --------------------------------------------------------------
 
 function normalizeDomain(raw) {
   let d = (raw || '').trim().toLowerCase();
@@ -283,27 +252,43 @@ function isValidDomain(d) {
   return /^(?=.{1,253}$)([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,}$/.test(d);
 }
 
-// Request the host permission (must run in a user gesture, so call this before
-// any awaits the caller adds) and record the domain. Returns whether granted.
-async function enableDomain(domain) {
+async function addInstance() {
+  const domain = normalizeDomain($('instanceInput').value);
+  if (!isValidDomain(domain)) {
+    setStatus($('instanceStatus'), 'Enter a valid domain, e.g. mastodon.social', 'error');
+    return;
+  }
+
+  const { instances } = await chrome.storage.local.get('instances');
+  const list = Array.isArray(instances) ? instances : [];
+  if (list.includes(domain)) {
+    setStatus($('instanceStatus'), `${domain} is already added.`, 'warn');
+    return;
+  }
+
+  // Permission request must happen synchronously in the user gesture.
   let granted = false;
   try {
     granted = await chrome.permissions.request({ origins: [`https://${domain}/*`] });
   } catch (e) {
     granted = false;
   }
-  if (!granted) return false;
-  const list = await getInstances();
-  if (!list.includes(domain)) {
-    list.push(domain);
-    await chrome.storage.local.set({ instances: list });
+  if (!granted) {
+    setStatus($('instanceStatus'), `Permission to run on ${domain} was not granted.`, 'error');
+    return;
   }
+
+  list.push(domain);
+  await chrome.storage.local.set({ instances: list });
   await chrome.runtime.sendMessage({ type: 'reconcile' });
-  return true;
+  $('instanceInput').value = '';
+  renderInstances(list);
+  setStatus($('instanceStatus'), `Added ${domain}. Reload its tab to see the button.`, 'ok');
 }
 
-async function disableDomain(domain) {
-  const list = (await getInstances()).filter((d) => d !== domain);
+async function removeInstance(domain) {
+  const { instances } = await chrome.storage.local.get('instances');
+  const list = (Array.isArray(instances) ? instances : []).filter((d) => d !== domain);
   await chrome.storage.local.set({ instances: list });
   try {
     await chrome.permissions.remove({ origins: [`https://${domain}/*`] });
@@ -311,53 +296,8 @@ async function disableDomain(domain) {
     /* ignore */
   }
   await chrome.runtime.sendMessage({ type: 'reconcile' });
-  await refreshSites();
-}
-
-async function addInstance() {
-  const domain = normalizeDomain($('instanceInput').value);
-  if (!isValidDomain(domain)) {
-    setStatus($('instanceStatus'), 'Enter a valid domain, e.g. mastodon.social', 'error');
-    return;
-  }
-  if (BUILTIN_DOMAINS.includes(domain)) {
-    setStatus($('instanceStatus'), 'Use the Bluesky toggle above for bsky.app.', 'warn');
-    return;
-  }
-  if ((await getInstances()).includes(domain)) {
-    setStatus($('instanceStatus'), `${domain} is already added.`, 'warn');
-    return;
-  }
-
-  const granted = await enableDomain(domain);
-  if (!granted) {
-    setStatus($('instanceStatus'), `Permission to run on ${domain} was not granted.`, 'error');
-    return;
-  }
-  $('instanceInput').value = '';
-  await refreshSites();
-  setStatus($('instanceStatus'), `Added ${domain}. Reload its tab to see the button.`, 'ok');
-}
-
-async function removeInstance(domain) {
-  await disableDomain(domain);
+  renderInstances(list);
   setStatus($('instanceStatus'), `Removed ${domain}.`, 'warn');
-}
-
-async function toggleBluesky() {
-  const domain = 'bsky.app';
-  if ((await getInstances()).includes(domain)) {
-    await disableDomain(domain);
-    setStatus($('builtinStatus'), 'Bluesky disabled.', 'warn');
-    return;
-  }
-  const granted = await enableDomain(domain);
-  if (!granted) {
-    setStatus($('builtinStatus'), 'Permission to run on bsky.app was not granted.', 'error');
-    return;
-  }
-  await refreshSites();
-  setStatus($('builtinStatus'), 'Bluesky enabled. Reload bsky.app to see the button.', 'ok');
 }
 
 // ---- Wiring -----------------------------------------------------------------
@@ -383,7 +323,6 @@ document.addEventListener('DOMContentLoaded', () => {
   );
   $('resetSession').addEventListener('click', resetSession);
 
-  $('toggleBluesky').addEventListener('click', toggleBluesky);
   $('addInstance').addEventListener('click', addInstance);
   $('instanceInput').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
