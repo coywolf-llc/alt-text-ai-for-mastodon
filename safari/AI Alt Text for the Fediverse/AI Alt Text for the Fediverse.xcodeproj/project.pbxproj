@@ -1,0 +1,605 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5B9084B02FE6FE9C002E2E8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9084AF2FE6FE9C002E2E8C /* AppDelegate.swift */; };
+		5B9084B42FE6FE9C002E2E8C /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 5B9084B22FE6FE9C002E2E8C /* Main.html */; };
+		5B9084B62FE6FE9C002E2E8C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9084B52FE6FE9C002E2E8C /* Icon.png */; };
+		5B9084B82FE6FE9C002E2E8C /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 5B9084B72FE6FE9C002E2E8C /* Style.css */; };
+		5B9084BA2FE6FE9C002E2E8C /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 5B9084B92FE6FE9C002E2E8C /* Script.js */; };
+		5B9084BC2FE6FE9C002E2E8C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9084BB2FE6FE9C002E2E8C /* ViewController.swift */; };
+		5B9084BF2FE6FE9C002E2E8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B9084BD2FE6FE9C002E2E8C /* Main.storyboard */; };
+		5B9084C12FE6FE9D002E2E8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B9084C02FE6FE9D002E2E8C /* Assets.xcassets */; };
+		5B9084C82FE6FE9D002E2E8C /* AI Alt Text for the Fediverse Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5B9084C72FE6FE9D002E2E8C /* AI Alt Text for the Fediverse Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5B9084CD2FE6FE9D002E2E8C /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9084CC2FE6FE9D002E2E8C /* SafariWebExtensionHandler.swift */; };
+		5B9084DC2FE6FE9D002E2E8C /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 5B9084D92FE6FE9D002E2E8C /* icons */; };
+		5B9084DD2FE6FE9D002E2E8C /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B9084DA2FE6FE9D002E2E8C /* manifest.json */; };
+		5B9084DE2FE6FE9D002E2E8C /* src in Resources */ = {isa = PBXBuildFile; fileRef = 5B9084DB2FE6FE9D002E2E8C /* src */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5B9084C92FE6FE9D002E2E8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B9084A42FE6FE9C002E2E8C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B9084C62FE6FE9D002E2E8C;
+			remoteInfo = "AI Alt Text for the Fediverse Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5B9084D42FE6FE9D002E2E8C /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5B9084C82FE6FE9D002E2E8C /* AI Alt Text for the Fediverse Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		5B9084AC2FE6FE9C002E2E8C /* AI Alt Text for the Fediverse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AI Alt Text for the Fediverse.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B9084AF2FE6FE9C002E2E8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5B9084B32FE6FE9C002E2E8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
+		5B9084B52FE6FE9C002E2E8C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		5B9084B72FE6FE9C002E2E8C /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		5B9084B92FE6FE9C002E2E8C /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		5B9084BB2FE6FE9C002E2E8C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5B9084BE2FE6FE9C002E2E8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5B9084C02FE6FE9D002E2E8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5B9084C22FE6FE9D002E2E8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B9084C72FE6FE9D002E2E8C /* AI Alt Text for the Fediverse Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "AI Alt Text for the Fediverse Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B9084CC2FE6FE9D002E2E8C /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		5B9084CE2FE6FE9D002E2E8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B9084D92FE6FE9D002E2E8C /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = Resources/icons; sourceTree = "<group>"; };
+		5B9084DA2FE6FE9D002E2E8C /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = Resources/manifest.json; sourceTree = "<group>"; };
+		5B9084DB2FE6FE9D002E2E8C /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = Resources/src; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5B9084A92FE6FE9C002E2E8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B9084C42FE6FE9D002E2E8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5B9084A32FE6FE9C002E2E8C = {
+			isa = PBXGroup;
+			children = (
+				5B9084AE2FE6FE9C002E2E8C /* AI Alt Text for the Fediverse */,
+				5B9084CB2FE6FE9D002E2E8C /* AI Alt Text for the Fediverse Extension */,
+				5B9084AD2FE6FE9C002E2E8C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5B9084AD2FE6FE9C002E2E8C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5B9084AC2FE6FE9C002E2E8C /* AI Alt Text for the Fediverse.app */,
+				5B9084C72FE6FE9D002E2E8C /* AI Alt Text for the Fediverse Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5B9084AE2FE6FE9C002E2E8C /* AI Alt Text for the Fediverse */ = {
+			isa = PBXGroup;
+			children = (
+				5B9084AF2FE6FE9C002E2E8C /* AppDelegate.swift */,
+				5B9084BB2FE6FE9C002E2E8C /* ViewController.swift */,
+				5B9084BD2FE6FE9C002E2E8C /* Main.storyboard */,
+				5B9084C02FE6FE9D002E2E8C /* Assets.xcassets */,
+				5B9084C22FE6FE9D002E2E8C /* Info.plist */,
+				5B9084B12FE6FE9C002E2E8C /* Resources */,
+			);
+			path = "AI Alt Text for the Fediverse";
+			sourceTree = "<group>";
+		};
+		5B9084B12FE6FE9C002E2E8C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5B9084B22FE6FE9C002E2E8C /* Main.html */,
+				5B9084B52FE6FE9C002E2E8C /* Icon.png */,
+				5B9084B72FE6FE9C002E2E8C /* Style.css */,
+				5B9084B92FE6FE9C002E2E8C /* Script.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5B9084CB2FE6FE9D002E2E8C /* AI Alt Text for the Fediverse Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5B9084D82FE6FE9D002E2E8C /* Resources */,
+				5B9084CC2FE6FE9D002E2E8C /* SafariWebExtensionHandler.swift */,
+				5B9084CE2FE6FE9D002E2E8C /* Info.plist */,
+			);
+			path = "AI Alt Text for the Fediverse Extension";
+			sourceTree = "<group>";
+		};
+		5B9084D82FE6FE9D002E2E8C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5B9084D92FE6FE9D002E2E8C /* icons */,
+				5B9084DA2FE6FE9D002E2E8C /* manifest.json */,
+				5B9084DB2FE6FE9D002E2E8C /* src */,
+			);
+			name = Resources;
+			path = "AI Alt Text for the Fediverse Extension";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5B9084AB2FE6FE9C002E2E8C /* AI Alt Text for the Fediverse */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B9084D52FE6FE9D002E2E8C /* Build configuration list for PBXNativeTarget "AI Alt Text for the Fediverse" */;
+			buildPhases = (
+				5B9084A82FE6FE9C002E2E8C /* Sources */,
+				5B9084A92FE6FE9C002E2E8C /* Frameworks */,
+				5B9084AA2FE6FE9C002E2E8C /* Resources */,
+				5B9084D42FE6FE9D002E2E8C /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B9084CA2FE6FE9D002E2E8C /* PBXTargetDependency */,
+			);
+			name = "AI Alt Text for the Fediverse";
+			packageProductDependencies = (
+			);
+			productName = "AI Alt Text for the Fediverse";
+			productReference = 5B9084AC2FE6FE9C002E2E8C /* AI Alt Text for the Fediverse.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5B9084C62FE6FE9D002E2E8C /* AI Alt Text for the Fediverse Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B9084D12FE6FE9D002E2E8C /* Build configuration list for PBXNativeTarget "AI Alt Text for the Fediverse Extension" */;
+			buildPhases = (
+				5B9084C32FE6FE9D002E2E8C /* Sources */,
+				5B9084C42FE6FE9D002E2E8C /* Frameworks */,
+				5B9084C52FE6FE9D002E2E8C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AI Alt Text for the Fediverse Extension";
+			packageProductDependencies = (
+			);
+			productName = "AI Alt Text for the Fediverse Extension";
+			productReference = 5B9084C72FE6FE9D002E2E8C /* AI Alt Text for the Fediverse Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5B9084A42FE6FE9C002E2E8C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2650;
+				LastUpgradeCheck = 2650;
+				TargetAttributes = {
+					5B9084AB2FE6FE9C002E2E8C = {
+						CreatedOnToolsVersion = 26.5;
+					};
+					5B9084C62FE6FE9D002E2E8C = {
+						CreatedOnToolsVersion = 26.5;
+					};
+				};
+			};
+			buildConfigurationList = 5B9084A72FE6FE9C002E2E8C /* Build configuration list for PBXProject "AI Alt Text for the Fediverse" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5B9084A32FE6FE9C002E2E8C;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5B9084AD2FE6FE9C002E2E8C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5B9084AB2FE6FE9C002E2E8C /* AI Alt Text for the Fediverse */,
+				5B9084C62FE6FE9D002E2E8C /* AI Alt Text for the Fediverse Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5B9084AA2FE6FE9C002E2E8C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B9084B62FE6FE9C002E2E8C /* Icon.png in Resources */,
+				5B9084BF2FE6FE9C002E2E8C /* Main.storyboard in Resources */,
+				5B9084BA2FE6FE9C002E2E8C /* Script.js in Resources */,
+				5B9084B42FE6FE9C002E2E8C /* Main.html in Resources */,
+				5B9084C12FE6FE9D002E2E8C /* Assets.xcassets in Resources */,
+				5B9084B82FE6FE9C002E2E8C /* Style.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B9084C52FE6FE9D002E2E8C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B9084DE2FE6FE9D002E2E8C /* src in Resources */,
+				5B9084DD2FE6FE9D002E2E8C /* manifest.json in Resources */,
+				5B9084DC2FE6FE9D002E2E8C /* icons in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5B9084A82FE6FE9C002E2E8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B9084BC2FE6FE9C002E2E8C /* ViewController.swift in Sources */,
+				5B9084B02FE6FE9C002E2E8C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B9084C32FE6FE9D002E2E8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B9084CD2FE6FE9D002E2E8C /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5B9084CA2FE6FE9D002E2E8C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B9084C62FE6FE9D002E2E8C /* AI Alt Text for the Fediverse Extension */;
+			targetProxy = 5B9084C92FE6FE9D002E2E8C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5B9084B22FE6FE9C002E2E8C /* Main.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5B9084B32FE6FE9C002E2E8C /* Base */,
+			);
+			name = Main.html;
+			sourceTree = "<group>";
+		};
+		5B9084BD2FE6FE9C002E2E8C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5B9084BE2FE6FE9C002E2E8C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5B9084CF2FE6FE9D002E2E8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5B9084D02FE6FE9D002E2E8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		5B9084D22FE6FE9D002E2E8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "AI Alt Text for the Fediverse Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Alt Text for the Fediverse Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.coywolf.AIAltTextForTheFediverse.Extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		5B9084D32FE6FE9D002E2E8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "AI Alt Text for the Fediverse Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Alt Text for the Fediverse Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.coywolf.AIAltTextForTheFediverse.Extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		5B9084D62FE6FE9D002E2E8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "AI Alt Text for the Fediverse/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Alt Text for the Fediverse";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coywolf.AIAltTextForTheFediverse";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		5B9084D72FE6FE9D002E2E8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "AI Alt Text for the Fediverse/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Alt Text for the Fediverse";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coywolf.AIAltTextForTheFediverse";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5B9084A72FE6FE9C002E2E8C /* Build configuration list for PBXProject "AI Alt Text for the Fediverse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B9084CF2FE6FE9D002E2E8C /* Debug */,
+				5B9084D02FE6FE9D002E2E8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B9084D12FE6FE9D002E2E8C /* Build configuration list for PBXNativeTarget "AI Alt Text for the Fediverse Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B9084D22FE6FE9D002E2E8C /* Debug */,
+				5B9084D32FE6FE9D002E2E8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B9084D52FE6FE9D002E2E8C /* Build configuration list for PBXNativeTarget "AI Alt Text for the Fediverse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B9084D62FE6FE9D002E2E8C /* Debug */,
+				5B9084D72FE6FE9D002E2E8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5B9084A42FE6FE9C002E2E8C /* Project object */;
+}

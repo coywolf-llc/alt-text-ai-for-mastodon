@@ -1,0 +1,6 @@
+# Xcode — user-specific and build artifacts
+xcuserdata/
+*.xcuserstate
+DerivedData/
+build/
+.DS_Store
