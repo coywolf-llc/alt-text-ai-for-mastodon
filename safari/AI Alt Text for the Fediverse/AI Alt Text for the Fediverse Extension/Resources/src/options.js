@@ -266,16 +266,22 @@ async function addInstance() {
     return;
   }
 
-  // Permission request must happen synchronously in the user gesture.
-  let granted = false;
-  try {
-    granted = await chrome.permissions.request({ origins: [`https://${domain}/*`] });
-  } catch (e) {
-    granted = false;
-  }
-  if (!granted) {
-    setStatus($('instanceStatus'), `Permission to run on ${domain} was not granted.`, 'error');
-    return;
+  // Safari manages host access through its own toolbar UI rather than via
+  // chrome.permissions.request(), which always returns false there. Skip the
+  // gate on Safari and let Safari's per-site permission prompt handle it when
+  // the user visits the site.
+  const isSafari = navigator.vendor === 'Apple Computer, Inc.';
+  if (!isSafari) {
+    let granted = false;
+    try {
+      granted = await chrome.permissions.request({ origins: [`https://${domain}/*`] });
+    } catch (e) {
+      granted = false;
+    }
+    if (!granted) {
+      setStatus($('instanceStatus'), `Permission to run on ${domain} was not granted.`, 'error');
+      return;
+    }
   }
 
   list.push(domain);
@@ -283,7 +289,10 @@ async function addInstance() {
   await chrome.runtime.sendMessage({ type: 'reconcile' });
   $('instanceInput').value = '';
   renderInstances(list);
-  setStatus($('instanceStatus'), `Added ${domain}. Reload its tab to see the button.`, 'ok');
+  const addedMsg = isSafari
+    ? `Added ${domain}. Visit the site and allow the extension when Safari prompts.`
+    : `Added ${domain}. Reload its tab to see the button.`;
+  setStatus($('instanceStatus'), addedMsg, 'ok');
 }
 
 async function removeInstance(domain) {
