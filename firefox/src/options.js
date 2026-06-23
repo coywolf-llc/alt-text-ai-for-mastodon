@@ -259,15 +259,10 @@ async function addInstance() {
     return;
   }
 
-  const { instances } = await browser.storage.local.get('instances');
-  const list = Array.isArray(instances) ? instances : [];
-  if (list.includes(domain)) {
-    setStatus($('instanceStatus'), `${domain} is already added.`, 'warn');
-    return;
-  }
-
-  // Request host access for this instance. Firefox shows a per-site permission
-  // prompt; this must run inside the user gesture (the Add-instance click).
+  // Firefox requires permissions.request() to run synchronously inside the user
+  // gesture (the Add-instance click) — it must come before any await, or the user
+  // activation is lost and Firefox rejects the request. So request host access
+  // FIRST, then read/update storage.
   let granted = false;
   try {
     granted = await browser.permissions.request({ origins: [`https://${domain}/*`] });
@@ -276,6 +271,13 @@ async function addInstance() {
   }
   if (!granted) {
     setStatus($('instanceStatus'), `Permission to run on ${domain} was not granted.`, 'error');
+    return;
+  }
+
+  const { instances } = await browser.storage.local.get('instances');
+  const list = Array.isArray(instances) ? instances : [];
+  if (list.includes(domain)) {
+    setStatus($('instanceStatus'), `${domain} is already added.`, 'warn');
     return;
   }
 
