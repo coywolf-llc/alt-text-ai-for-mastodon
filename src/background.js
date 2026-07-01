@@ -15,6 +15,19 @@ const ANTHROPIC_VERSION = '2023-06-01';
 const DEFAULT_MODEL = 'claude-haiku-4-5-20251001';
 const ALT_TEXT_MAX_TOKENS = 300;
 
+// Abort a hung request so the composer button never sticks on "Generating…".
+// Generous ceiling — a vision call can legitimately take tens of seconds.
+const REQUEST_TIMEOUT_MS = 60000;
+
+// fetch() with an AbortController timeout. Rejects with an AbortError if the
+// request outlives the deadline; the caller distinguishes that from a network
+// failure.
+function fetchWithTimeout(url, options, timeoutMs) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal }).finally(() => clearTimeout(timer));
+}
+
 // Instruction for the model. Returns only the description text.
 // Accessibility principles aligned with established alt-text best practices
 // (e.g. W3C WAI image guidance) — limited to the parts that apply to a single
@@ -55,7 +68,7 @@ async function generateAltText({ data, mediaType, model }) {
 
   let resp;
   try {
-    resp = await fetch(API_URL, {
+    resp = await fetchWithTimeout(API_URL, {
       method: 'POST',
       headers: {
         'x-api-key': apiKey,
@@ -76,9 +89,14 @@ async function generateAltText({ data, mediaType, model }) {
           },
         ],
       }),
-    });
+    }, REQUEST_TIMEOUT_MS);
   } catch (e) {
-    return { ok: false, error: "Couldn't reach api.anthropic.com. Check your connection and try again." };
+    return {
+      ok: false,
+      error: e && e.name === 'AbortError'
+        ? 'The request to Claude timed out. Try again.'
+        : "Couldn't reach api.anthropic.com. Check your connection and try again.",
+    };
   }
 
   let body;
@@ -117,7 +135,7 @@ async function validateApiKey({ apiKey, model }) {
 
   let resp;
   try {
-    resp = await fetch(API_URL, {
+    resp = await fetchWithTimeout(API_URL, {
       method: 'POST',
       headers: {
         'x-api-key': key,
@@ -130,7 +148,7 @@ async function validateApiKey({ apiKey, model }) {
         max_tokens: 1,
         messages: [{ role: 'user', content: 'ok' }],
       }),
-    });
+    }, REQUEST_TIMEOUT_MS);
   } catch (e) {
     return { networkError: true };
   }
